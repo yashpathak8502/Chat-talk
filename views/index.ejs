@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Chat-App</title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="box">
+
+      <div id="users">
+        <!-- <div id="online-user"></div>
+        <div id="user">
+          <div id="user-img"></div>
+          <div id="user-name"></div>
+        </div>
+        <div id="user">
+          <div id="user-img"></div>
+          <div id="user-name"></div>
+        </div>
+        <div id="user">
+          <div id="user-img"></div>
+          <div id="user-name"></div>
+        </div> -->
+      </div>
+
+      <div id="messages">
+        <div id="msg-area">
+
+          <!-- <div class="msg" id="left">
+            <div id="msg-name">A</div>
+            <div id="msg-matter">Lorem ipsum, dolor as labore eos rem.</div>
+          </div>
+
+          <div class="msg" id="right">
+            <div id="msg-matter-right">Lorehenderit eum suscipit quas magnam illum unde aut fnimi?</div>
+          </div> -->
+
+        </div>
+
+
+        <div id="send-msg">
+          <div id="type-msg">
+            <button id="emo"></button>
+            <div id="text">
+              <div id="t3">
+                <button id="e1"></button>
+                <button id="e2"></button>
+                <button id="e3"></button>
+                <button id="e4"></button>
+                <button id="e5"></button>
+              </div>
+              <textarea id="ta" id="ta"></textarea>
+              <div id="t2">
+                <button id="mic"></button>
+                <button id="speak-mic"></button>
+              </div>
+            </div>
+            <button id="send"></button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="name-form">
+      <div id="name-div">
+        <div id="eyn">Enter Your Name</div>
+        <input type="text" id="username">
+        <button id="join-btn">Join The Chat</button>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+    integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js"
+    integrity="sha512-6zTDRWNxo8vI6JZYDCwhrJpg5icK3P4HNnW3czsO5Scb3lAoPDam+/wF3eog4hxcl0h44d0XlIcFkuoSaWHQ2g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    function abcd() {
+      let a = document.getElementById('msg-area');
+      a.scrollTop = a.scrollHeight;
+    }
+
+    var socket = io();
+
+    document.querySelector("#join-btn").addEventListener("click", function () {
+      socket.emit('join', document.querySelector("#username").value);
+      document.querySelector("#name-form").style.top = "-100%";
+    })
+
+    socket.on('online-users', function (data) {
+      var clutter = ``;
+      data.forEach(function (elem) {
+        clutter += `<div id="user"><div id="user-img">${elem.charAt(0).toUpperCase()}</div><div id="user-name">${elem}</div></div>`;
+      })
+      document.querySelector("#users").innerHTML += clutter;
+    })
+
+    socket.on('online-users-2', function (data) {
+      var clutter = ``;
+      data.forEach(function (elem) {
+        clutter += `<div id="user"><div id="user-img">${elem.charAt(0).toUpperCase()}</div><div id="user-name">${elem}</div></div>`;
+      })
+      document.querySelector("#users").innerHTML = clutter;
+    })
+
+    socket.on('user-joined', function (data) {
+      // var clutter = `<div id="user-join">${data} "Joined The chat"</div>`;
+      var clutter = `<div id="user-join"> <div id="userj">${data} joined the chat </div> </div> `;
+      document.querySelector("#msg-area").innerHTML += clutter;
+      abcd();
+    })
+
+    socket.on('i-joined', function (data) {
+      // var clutter = `<div id="user-join">"You Joined The chat"</div>`;
+      var clutter = `<div id="user-join"> <div id="userj">You joined the chat </div> </div> `;
+      document.querySelector("#msg-area").innerHTML += clutter;
+      abcd();
+    })
+
+    socket.on('left', function (data) {
+      //var clutter = `<div id="user-join"> ${data}  " has left The chat"</div>`;
+      var clutter = `<div id="user-join"> <div id="userj">${data} left the chat </div> </div> `;
+      document.querySelector("#msg-area").innerHTML += clutter;
+      abcd();
+    })
+
+    document.querySelector("#send").addEventListener('click', function () {
+      var msg = document.querySelector('#ta').value;
+      socket.emit('message', msg);
+      document.querySelector('#ta').value = "";
+    })
+
+    socket.on('send-msg', function (data) {
+      document.querySelector("#msg-area").innerHTML += `<div class="msg" id="left"><div id="msg-name">${data.username.charAt(0).toUpperCase()}</div><div id="msg-matter">${data.data}</div></div>`;
+      socket.emit('speak-msg', data.data);
+      abcd();
+    })
+
+    socket.on('self-msg', function (data) {
+      document.querySelector("#msg-area").innerHTML += ` <div class="msg" id="right"><div id="msg-matter-right">${data.data}</div></div>`;
+      abcd();
+
+    })
+
+    document.querySelector("#e1").addEventListener('click', function () {
+      socket.emit('e1');
+
+    })
+    socket.on('recieve-e1', function (data) {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="left"> <div id="em-send">${data.username.charAt(0).toUpperCase()} </div>  <div id="emoji"> <img src="/images/glass.png"></div></div>`;
+      abcd();
+    })
+    socket.on('send-e1', function () {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="right"><div id="emoji"><img src="/images/glass.png"></div></div>`;
+      abcd();
+    })
+
+    document.querySelector("#e2").addEventListener('click', function () {
+      socket.emit('e2');
+
+    })
+    socket.on('recieve-e2', function (data) {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="left"><div id="em-send">${data.username.charAt(0).toUpperCase()} </div><div id="emoji"><img src="/images/heart.png"></div></div>`;
+      abcd();
+    })
+    socket.on('send-e2', function () {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="right"><div id="emoji"><img src="/images/heart.png"></div></div>`;
+      abcd();
+    })
+
+    document.querySelector("#e3").addEventListener('click', function () {
+      socket.emit('e3');
+    })
+    socket.on('recieve-e3', function (data) {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="left"><div id="em-send">${data.username.charAt(0).toUpperCase()} </div><div id="emoji"><img src="/images/smile.png"></div></div>`;
+      abcd();
+    })
+    socket.on('send-e3', function () {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="right"><div id="emoji"><img src="/images/smile.png"></div></div>`;
+      abcd();
+    })
+
+    document.querySelector("#e4").addEventListener('click', function () {
+      socket.emit('e4');
+    })
+    socket.on('recieve-e4', function (data) {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="left"><div id="em-send">${data.username.charAt(0).toUpperCase()} </div><div id="emoji"><img src="/images/tear.png"></div></div>`;
+      abcd();
+    })
+    socket.on('send-e4', function () {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="right"><div id="emoji"><img src="/images/tear.png"></div></div>`;
+      abcd();
+    })
+
+    document.querySelector("#e5").addEventListener('click', function () {
+      socket.emit('e5');
+    })
+    socket.on('recieve-e5', function (data) {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="left"><div id="em-send">${data.username.charAt(0).toUpperCase()} </div><div id="emoji"><img src="/images/wink.png"></div></div>`;
+      abcd();
+    })
+    socket.on('send-e5', function () {
+      document.querySelector("#msg-area").innerHTML += `  <div class="msg" id="right"><div id="emoji"><img src="/images/wink.png"></div></div>`;
+      abcd();
+    })
+
+
+
+    document.querySelector("#speak-mic").addEventListener('click', function () {
+      var m = document.querySelector('#ta').value;
+      socket.emit('self-speak', m);
+    })
+  </script>
+
+
+  <script>
+
+
+    // document.querySelector("#speak-mic").addEventListener('click', function () {
+    //   var m = document.querySelector('#ta').value;
+    //   socket.emit('self-speak', m);
+    // })
+
+    var speak = document.getElementById('mic');
+    var ta = document.getElementById('ta');
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+
+    speak.addEventListener('click', function () {
+      recognition.start();
+      ta.innerHTML = '...Listening...';
+    })
+    recognition.onresult = function (e) {
+      var transcript = e.results[0][0].transcript;
+      ta.innerHTML = transcript;
+    }
+  </script>
+
+
+
+  <script>
+
+
+    var l = 1;
+    document.querySelector("#emo").addEventListener('click', function () {
+      if (l === 1) {
+        //document.querySelector("#t3").style.left = '0%';
+        gsap.to("#t3", {
+          x: 569.6,
+          opacity: 1,
+          stagger: .1,
+          duration: 1,
+          ease: Expo.easeInOut
+        })
+        document.querySelector("#emo").style.backgroundColor = "rgb(0, 157, 255)";
+        l = 0;
+
+      }
+      else {
+        //document.querySelector("#t3").style.left = '-70%';
+        gsap.to("#t3", {
+          x: -5,
+          opacity: 0,
+          stagger: .1,
+          duration: 1,
+          ease: Expo.easeInOut
+        })
+        document.querySelector("#emo").style.backgroundColor = "rgb(255, 255, 255)";
+        l = 1;
+
+      }
+    })
+  </script>
+</body>
+
+</html>

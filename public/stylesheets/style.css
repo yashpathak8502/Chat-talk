@@ -1,0 +1,469 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  /* background-color: rgb(0, 157, 255); */
+  background-color: #2861ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#box {
+  height: 97%;
+  width: 99%;
+  /* background-color: #2861ff; */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#users {
+  height: 95%;
+  width: 30%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  box-shadow: 0 0 5px rgba(21, 21, 255, 0.133);
+}
+#online-user {
+  margin-top: 15px;
+  height: 10%;
+  width: 95%;
+  background-color: rgb(110, 110, 110);
+  border-radius: 20px;
+}
+#user {
+  margin-top: 10px;
+  height: 10%;
+  width: 80%;
+  background-color: rgb(25, 0, 255);
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.35);
+}
+#user-img {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 25px;
+  font-weight: 500;
+  color: rgb(0, 0, 162);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+#user-name {
+  height: 70%;
+  width: 70%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+}
+#messages {
+  height: 95%;
+  width: 67%;
+  background-color: #002affdb;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.132);
+}
+
+#msg-area {
+  height: 80%;
+  width: 98%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  overflow: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.msg {
+  margin-top: 10px;
+  height: fit-content;
+  max-width: 50%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  border-radius: 35px;
+  justify-content: space-around;
+}
+#msg-name {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  font-size: 25px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  background-color: blue;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#msg-matter {
+  height: 80%;
+  width: 90%;
+  margin-left: 10px;
+  font-size: 21px;
+  font-weight: 500;
+  border-radius: 40px;
+  padding: 5px 10px;
+}
+#msg-matter-right {
+  height: 80%;
+  width: 99%;
+  color: white;
+  font-size: 21px;
+  font-weight: 500;
+  border-radius: 50px;
+  padding: 5px 10px;
+}
+#left {
+  background-color: rgb(209, 209, 209);
+  float: left;
+  min-width: 20%;
+  clear: both;
+  box-shadow: 0 0 5px rgba(122, 122, 122, 0.765);
+}
+#right {
+  background-color: rgb(25, 0, 255);
+  float: right;
+  clear: both;
+  min-width: 10%;
+  box-shadow: 0 0 5px rgba(122, 122, 122, 0.765);
+}
+#user-join {
+  width: 100%;
+  height: 40px;
+  margin-top: 15px;
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#userj {
+  color: white;
+  padding: 0px 30px;
+  width: fit-content;
+  height: 100%;
+  background-color: rgb(61, 61, 61);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  box-shadow: 0 0 5px rgba(122, 122, 122, 0.765);
+}
+#send-msg {
+  height: 15%;
+  width: 98%;
+  background-color: #ffffffe7;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#type-msg {
+  height: 80%;
+  width: 95%;
+  background-color: blue;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#emo {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/emo.png);
+  background-position: center;
+  background-size: contain;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+#text {
+  position: relative;
+  height: 80%;
+  width: 80%;
+  background-color: rgb(0, 157, 255);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+#ta {
+  margin-left: 10px;
+  height: 90%;
+  width: 70%;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 13px 15px;
+  font-family: gilroy;
+  font-size: 25px;
+  overflow-y: auto;
+}
+#t2 {
+  margin-left: 15px;
+  height: 90%;
+  width: 25%;
+  border-radius: 50px;
+  background-color: rgb(91, 192, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+#mic {
+  height: 55px;
+  width: 55px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  background-image: url(/images/mic.png);
+  background-position: center;
+  background-size: contain;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+#mic:hover {
+  background-color: rgb(0, 157, 255);
+}
+#speak-mic {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/speaker.png);
+  background-position: center;
+  background-size: contain;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+#speak-mic:hover {
+  background-color: rgb(0, 157, 255);
+}
+#t3 {
+  /* left: 0%; */
+  left: -75%;
+  margin-left: 10px;
+  position: absolute;
+  height: 90%;
+  width: 70%;
+  border-radius: 50px;
+  background-color: rgb(0, 157, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 5px rgba(25, 0, 255, 0.25);
+}
+#e1 {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/glass.png);
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+#e1:hover {
+  background-color: yellow;
+}
+#e2 {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/heart.png);
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+#e2:hover {
+  background-color: yellow;
+}
+#e3 {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/smile.png);
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+#e3:hover {
+  background-color: yellow;
+}
+#e4 {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/tear.png);
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+#e4:hover {
+  background-color: yellow;
+}
+#e5 {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/wink.png);
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+#e5:hover {
+  background-color: yellow;
+}
+
+#send {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  background-image: url(/images/send.png);
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+#send:hover{
+  background-color: rgb(0, 157, 255);
+}
+#name-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0%;
+  background-color: rgba(0, 183, 255, 0.228);
+  backdrop-filter: blur(50px);
+  background: radial-gradient(rgba(0, 140, 255, 0.219), rgb(0, 157, 255));
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+}
+#name-div {
+  padding: 20px 0px;
+  height: 35%;
+  width: 35%;
+  background-color: rgb(17, 0, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 35px;
+  box-shadow: 0 0 5px rgb(13, 0, 188);
+}
+#eyn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  height: 20%;
+  font-size: 30px;
+  border-radius: 25px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 5px;
+}
+#username {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  width: 60%;
+  height: 25%;
+  font-size: 30px;
+  border-radius: 30px;
+  border: 2px solid black;
+  outline: none;
+}
+#join-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  width: 30%;
+  height: 15%;
+  font-size: 20px;
+  border-radius: 15px;
+  outline: none;
+}
+#join-btn:hover {
+  background-color: rgb(135, 239, 255);
+}
+#emoji {
+  height: 100px;
+  width: 100px;
+  background-color: yellow;
+  border-radius: 50%;
+  margin-left: 5px;
+  box-shadow: 0 0 5px rgba(3, 0, 170, 0.848);
+}
+#emoji img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ 
+}
+#em-send {
+  height: 45px;
+  width: 45px;
+  background-color: rgb(13, 0, 255);
+  border-radius: 50%;
+  font-size: 25px;
+  font-weight: 500;
+  color: rgb(203, 231, 255);
+  background-color: blue;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
